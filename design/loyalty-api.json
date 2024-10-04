@@ -3,7 +3,7 @@
     "info": {
         "title": "Loyalty-APIs",
         "version": "1.0.0",
-        "description": "A brand new API with no content.  Go nuts!"
+        "description": "API for Loyalty Service!"
     },
     "paths": {
         "/loyalty/v1/transaction/{id}": {
@@ -205,5 +205,10 @@
                 "in": "query"
             }
         }
-    }
+    },
+    "security": [
+        {
+            "security-api-key": []
+        }
+    ]
 }
