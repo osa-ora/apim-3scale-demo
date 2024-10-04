@@ -1,0 +1,30 @@
+apiVersion: capabilities.3scale.net/v1beta1
+kind: Product
+metadata:
+  name: loyalty-service-apis
+spec:
+  name: Loyalty Service Apis
+  systemName: "loyalty-service-apis"
+  providerAccountRef:
+    name: 3scale-tenant-secret
+  applicationPlans:
+    basic:
+      name: “Loyalty Service Basic Plan"
+      setupFee: "0"
+      published: true
+    premium:
+      name: “Loyalty Service Premium Plan"
+      setupFee: "100"
+      published: true
+  backendUsages:
+    loyalty-backend:
+      path: /
+  mappingRules:
+    - httpMethod: GET
+      increment: 1
+      metricMethodRef: hits
+      pattern: "/loyalty/v1/balance/{id}"
+    - httpMethod: GET
+      increment: 1
+      metricMethodRef: hits
+      pattern: "/loyalty/v1/transaction/{id}"
