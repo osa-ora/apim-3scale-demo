@@ -1,0 +1,21 @@
+apiVersion: capabilities.3scale.net/v1beta1
+kind: Backend
+metadata:
+  name: loyalty-backend
+  namespace: globex-apim-user1
+spec:
+  name: "Loyalty Backend"
+  systemName: "loyalty-backend"
+  privateBaseURL: "http://java-ocp-demo.globex-apim-user1.svc.cluster.local:8080"
+  providerAccountRef:
+    name: 3scale-tenant-secret
+  metrics:
+    hits:
+      description: Number of API hits
+      friendlyName: Hits
+      unit: "hit"
+  mappingRules:
+    - httpMethod: GET
+      pattern: "/“
+      increment: 1
+      metricMethodRef: hits
