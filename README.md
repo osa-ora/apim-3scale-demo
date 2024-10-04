@@ -9,7 +9,7 @@ Demonstration of full end-to-end API management using Red Hat Integration
 
 ## Deploy An Application with APIs on OpenShift 
 
-You can use this guide to deploy this Java Application which expose 2 end points: /loyalty/v1/balance/{id} and /loyalty/v1/transaction/{id} both URL parameter {id} refer to the Loyalty id.
+You can use this guide to deploy this Java Application which exposes 2 end points: /loyalty/v1/balance/{id} and /loyalty/v1/transaction/{id} both URL parameters {id} refer to the Loyalty id.
 
 https://github.com/osa-ora/java-ocp-demo
 
@@ -34,7 +34,7 @@ Open the route of API Designer (Apicure), you can design the API or import the d
 
 <img width="1467" alt="Screenshot 2024-10-04 at 4 44 45 PM" src="https://github.com/user-attachments/assets/93bd2d1d-65bf-4b5e-a5e9-7f2c8893bedb">
 
-The GUI will help you to design the APIs easily, you need to foucs for example on the following items:
+The GUI will help you to design the APIs easily, you need to focus for example on the following items:
 - General: API name, version, description, security schema and security requirements.
 - Data Types
 - Responses (including examples)
@@ -54,11 +54,11 @@ Red Hat build of Apicurio Registry is a datastore for sharing standard event sch
 
 <img width="1263" alt="Screenshot 2024-10-04 at 5 01 32 PM" src="https://github.com/user-attachments/assets/78918549-d40c-4378-9eb2-00f4da1fd60a">
 
-Now, we can import the file that we designed in the previous step, it will automatically takes version 1, if you upload it again it will take version 2.
+Now, we can import the file that we designed in the previous step, it will automatically take version 1, if you upload it again it will take version 2.
 
 <img width="1103" alt="Screenshot 2024-10-04 at 5 03 46 PM" src="https://github.com/user-attachments/assets/7a4dab14-041c-4241-bd03-87e03bce754b">
 
-You can enable the validation of the specifications, check the documentation, update another version, generate client SDK and others, we will use the registry as our docuemntation source later in 3Scale.
+You can enable the validation of the specifications, check the documentation, update another version, generate client SDK and others. We will use the registry as our documentation source later in 3Scale.
 
 ---
 
@@ -80,15 +80,15 @@ Test it in the browser or by using the "curl" command:
 
 <img width="1053" alt="Screenshot 2024-10-04 at 5 12 42 PM" src="https://github.com/user-attachments/assets/eb4ef9a8-e51e-4d83-a95f-1b2be528d810">
 
-Now, we can start building our client apps that utilizes these API by hitting these mockups, these mockup examples should be covering different business scenarios .. like account not found, account with zero credit, account locked, account with some balance, etc...
+Now, we can start building our client apps that utilizes these API by hitting these mockups, these mockup examples should be covering different business scenarios .. like an account not found, an account with zero credit, an account locked, an account with some balance, etc...
 
 ---
 
 ## API Management using 3Scale
 
-Now, the final stage is to manage the actual API that we deployed in the first step by the API management and apply differnet policies and security governance.
+Now, the final stage is to manage the actual API that we deployed in the first step by the API management and apply different policies and security governance.
 
-3Scale define the service as a backend, which can then offer many products (aka APIs), these APIs have differnet mapping as the end points.
+3Scale defines the service as a backend, which can then offer many products (aka APIs), these APIs have different mapping as the end points.
 
 You can define activeDocs/documentation for each product/API, also you can define application plans where the client apps need to subscribe in any of these plans to be able to access the API, you can define throttling or pricing configurations per plan.
 
@@ -102,7 +102,7 @@ If you configured your API, defined the different policies, you can then deploy 
 
 ### Define the API Backend
 
-  We will use the service hostname:port as we mentioned in first step for our Java Application that expose the 2 APIs.
+  We will use the service hostname:port as we mentioned in the first step for our Java Application that exposes the 2 APIs.
 
   Click on Create Backend and populate it as following:
   
@@ -127,7 +127,7 @@ If you configured your API, defined the different policies, you can then deploy 
     name: 3scale-tenant-secret
   ```
 
-  how to get the access token ?
+  How to get the access token?
   Go to 3Scale Tenant, and create a secret "3scale-tenant-secret" on the namespace you are using with the same details.
   
   <img width="1190" alt="Screenshot 2024-10-04 at 9 06 25 PM" src="https://github.com/user-attachments/assets/3f4b3646-2731-48f0-8aa8-980c447d39be">
@@ -161,7 +161,7 @@ If you configured your API, defined the different policies, you can then deploy 
 
   or better use the GitOps approach as per the file: 3scale/active-docs.yaml
   But you need to change one line related the active docs location in the Apicure Registry:
-  Get the Route URL of the Registry fron OpenShift Console:
+  Get the Route URL of the Registry from OpenShift Console:
   
   <img width="747" alt="Screenshot 2024-10-04 at 9 18 49 PM" src="https://github.com/user-attachments/assets/f6e4a19b-255a-4d3c-b593-b6a24fb731c8">
 
@@ -176,7 +176,7 @@ If you configured your API, defined the different policies, you can then deploy 
 
  ### Add API Policies:
    
- Now, we can add some policies to the APIs, for example let's add retry policy:
+ Now, we can add some policies to the APIs, for example let's add a "Retry" policy:
  
  <img width="1081" alt="Screenshot 2024-10-04 at 9 26 49 PM" src="https://github.com/user-attachments/assets/c391be12-f510-43eb-8c66-7bd15ae4af21">
 
@@ -195,7 +195,7 @@ If you configured your API, defined the different policies, you can then deploy 
 
  <img width="1258" alt="Screenshot 2024-10-04 at 9 31 58 PM" src="https://github.com/user-attachments/assets/f72d0fc8-fc6e-4b71-8f35-07d6e06056ca">
 
-### Deplopy our APIs
+### Deploy our APIs
 
 Go to the Configurations section and click on promote changes.
 
@@ -207,7 +207,7 @@ Go to applications listing and click on create application
 
 <img width="436" alt="Screenshot 2024-10-04 at 9 45 45 PM" src="https://github.com/user-attachments/assets/d377f3b7-3b40-45c5-b9cc-550776156929">
 
-The create application will generate also user_key that we can use to access the APIs.
+The created application will also generate user_key that we can use to access the APIs.
 
 <img width="1264" alt="Screenshot 2024-10-04 at 9 46 33 PM" src="https://github.com/user-attachments/assets/ac210ffa-3ee0-454e-93c9-bb1fc1330254">
 
@@ -233,9 +233,11 @@ We can switch our client to use the premium plan which doesn't have any rate lim
 
 <img width="1255" alt="Screenshot 2024-10-04 at 9 48 53 PM" src="https://github.com/user-attachments/assets/b78700be-34b0-4898-ac19-73a9da86788f">
 
-You can also try to regenerate the key or suspend/resume the client and note that it takes times to be reflected as the gateway will get the updates frequently from the management application.
+You can also try to regenerate the key or suspend/resume the client and note that it takes time to be reflected as the gateway will get the updates frequently from the management application.
 
-This conclude our demo which covers end to end scenarios of designing APIs, Governance, Mocking it, Managing it and connecting it to the actual backend with different governance policies and rate limits.
+This concludes our demo which covers end to end scenarios of designing APIs, Governance, Mocking it, Managing it and connecting it to the actual backend with different governance policies and rate limits.
+
+---
 
 
  
