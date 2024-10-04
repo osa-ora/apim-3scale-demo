@@ -100,7 +100,7 @@ If you configured your API, defined the different policies, you can then deploy 
 
 <img width="1163" alt="Screenshot 2024-10-04 at 8 46 47 PM" src="https://github.com/user-attachments/assets/c03e0bc2-ccce-4984-9b15-49dcbc162528">
 
-### Define the API Backend
+### Defining the API Backend
 
   We will use the service hostname:port as we mentioned in the first step for our Java Application that exposes the 2 APIs.
 
@@ -137,7 +137,7 @@ If you configured your API, defined the different policies, you can then deploy 
   <img width="502" alt="Screenshot 2024-10-04 at 9 08 18 PM" src="https://github.com/user-attachments/assets/f87cbddd-4d02-452d-b050-2bfb4ad6d16e">
 
   
-### Define the Product/API
+### Defining the Product/API
 
   We can also create it from the GUI or again by GitOps approach, from the GUI we need to fill much more details:
   
@@ -153,8 +153,7 @@ If you configured your API, defined the different policies, you can then deploy 
   <img width="1475" alt="Screenshot 2024-10-04 at 9 24 02 PM" src="https://github.com/user-attachments/assets/28feb4db-026b-4aad-8c8b-895c7d78810c">
 
 
-  
-### Define the API ActiveDocs/Documentations
+### Defining the API ActiveDocs/Documentations
   Again we can create it from the GUI, copy and paste the documentation
 
   <img width="713" alt="Screenshot 2024-10-04 at 9 22 20 PM" src="https://github.com/user-attachments/assets/132f93dc-8951-40df-a44b-b3bdebae1306">
@@ -174,7 +173,7 @@ If you configured your API, defined the different policies, you can then deploy 
    
   <img width="1402" alt="Screenshot 2024-10-04 at 9 20 50 PM" src="https://github.com/user-attachments/assets/1d4608ac-edce-4fd7-8026-a396c1ba690e">
 
- ### Add API Policies:
+ ### Adding API Policies:
    
  Now, we can add some policies to the APIs, for example let's add a "Retry" policy:
  
@@ -184,7 +183,7 @@ If you configured your API, defined the different policies, you can then deploy 
  
  <img width="454" alt="Screenshot 2024-10-04 at 9 28 03 PM" src="https://github.com/user-attachments/assets/ccc9e2ad-f3e0-4565-b0ef-4a6e42484744">
 
-### Add Rate Limits:
+### Adding Rate Limits:
 
  Configure Rate Limits, go to the basic plan and click on New Usage Limit:
  
@@ -195,13 +194,13 @@ If you configured your API, defined the different policies, you can then deploy 
 
  <img width="1258" alt="Screenshot 2024-10-04 at 9 31 58 PM" src="https://github.com/user-attachments/assets/f72d0fc8-fc6e-4b71-8f35-07d6e06056ca">
 
-### Deploy our APIs
+### Deploying our APIs
 
 Go to the Configurations section and click on promote changes.
 
 <img width="1220" alt="Screenshot 2024-10-04 at 9 35 41 PM" src="https://github.com/user-attachments/assets/23a402a7-ffaa-4116-9724-eccb2fb062b4">
 
-### Create Client Application
+### Creating Client Application
 
 Go to applications listing and click on create application
 
@@ -211,7 +210,7 @@ The created application will also generate user_key that we can use to access th
 
 <img width="1264" alt="Screenshot 2024-10-04 at 9 46 33 PM" src="https://github.com/user-attachments/assets/ac210ffa-3ee0-454e-93c9-bb1fc1330254">
 
-### Test our APIs
+### Testing our APIs
 
 Get the staging URL and replace the {id} with a valid number e.g. 12345 and add it to the browser without the user_key, you will get error: "Authentication parameters missing"
 
@@ -234,6 +233,14 @@ We can switch our client to use the premium plan which doesn't have any rate lim
 <img width="1255" alt="Screenshot 2024-10-04 at 9 48 53 PM" src="https://github.com/user-attachments/assets/b78700be-34b0-4898-ac19-73a9da86788f">
 
 You can also try to regenerate the key or suspend/resume the client and note that it takes time to be reflected as the gateway will get the updates frequently from the management application.
+
+### Checking The Monitoring Dashboard
+
+You can check the monitoring information for our APIs. Go to Analyics section and navigate the different available dashboards.
+
+<img width="1477" alt="Screenshot 2024-10-04 at 10 31 24 PM" src="https://github.com/user-attachments/assets/8a7436e5-3132-4844-8fbe-b0db6e54985f">
+
+
 
 This concludes our demo which covers end to end scenarios of designing APIs, Governance, Mocking it, Managing it and connecting it to the actual backend with different governance policies and rate limits.
 
