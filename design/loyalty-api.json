@@ -1,0 +1,209 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Loyalty-APIs",
+        "version": "1.0.0",
+        "description": "A brand new API with no content.  Go nuts!"
+    },
+    "paths": {
+        "/loyalty/v1/transaction/{id}": {
+            "summary": "Get Last Transaction for Account by Id",
+            "description": "Get Last Transaction for Account by Id",
+            "get": {
+                "parameters": [
+                    {
+                        "examples": {
+                            "trans-account-1234": {
+                                "value": "1234"
+                            },
+                            "trans-account-5555": {
+                                "value": "5555"
+                            }
+                        },
+                        "name": "id",
+                        "description": "account id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/last-transaction-details"
+                    },
+                    "404": {
+                        "description": "Account not found"
+                    }
+                },
+                "security": [
+                    {
+                        "security-api-key": []
+                    }
+                ],
+                "summary": "Get Last Transaction for Account by Id",
+                "description": "Get Last Transaction for Account by Id"
+            }
+        },
+        "/loyalty/v1/balance/{id}": {
+            "summary": "Get Balance by Id",
+            "description": "Get Balane by Id",
+            "get": {
+                "parameters": [
+                    {
+                        "examples": {
+                            "account-1234": {
+                                "value": "1234"
+                            },
+                            "account-12345": {
+                                "value": "12345"
+                            }
+                        },
+                        "name": "id",
+                        "description": "account id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/account-balance"
+                    },
+                    "404": {
+                        "description": "Account not found"
+                    }
+                },
+                "security": [
+                    {
+                        "security-api-key": []
+                    }
+                ],
+                "summary": "Get Balance by Id",
+                "description": "Get Balance by Id"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Transaction": {
+                "title": "Root Type for Transaction",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "transaction id": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "account": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "value": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "POS": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "transaction id": 12354545,
+                    "account": 1234,
+                    "value": 200,
+                    "POS": "Pizza Shop",
+                    "description": "Pizza Purchase"
+                }
+            },
+            "Balance": {
+                "title": "Root Type for Balance",
+                "description": "Get Account Balance",
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "balance": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "account": 1234,
+                    "balance": 3000
+                }
+            }
+        },
+        "responses": {
+            "account-balance": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Balance"
+                        },
+                        "examples": {
+                            "account-1234": {
+                                "value": {
+                                    "account": 1234,
+                                    "balance": 3000
+                                }
+                            },
+                            "account-12345": {
+                                "value": {
+                                    "account": 12345,
+                                    "balance": 1750
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Return account balance"
+            },
+            "last-transaction-details": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Transaction"
+                        },
+                        "examples": {
+                            "trans-account-1234": {
+                                "value": {
+                                    "transaction id": 12354545,
+                                    "account": 1234,
+                                    "value": 200,
+                                    "POS": "Pizza Shop",
+                                    "description": "Pizza Purchase"
+                                }
+                            },
+                            "trans-account-5555": {
+                                "value": {
+                                    "transaction id": 232323,
+                                    "account": 5555,
+                                    "value": 120,
+                                    "POS": "KFC",
+                                    "description": "Dinner Box"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Last transaction details"
+            }
+        },
+        "securitySchemes": {
+            "security-api-key": {
+                "type": "apiKey",
+                "description": "API Access Key",
+                "name": "user_key",
+                "in": "query"
+            }
+        }
+    }
+}
