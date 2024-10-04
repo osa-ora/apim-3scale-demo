@@ -1,0 +1,12 @@
+kind: ActiveDoc
+apiVersion: capabilities.3scale.net/v1beta1
+metadata:
+  name: loyalty-service-activedoc
+spec:
+  activeDocOpenAPIRef:
+    url: "https://service-registry-user1.apps.cluster-5p2pn.5p2pn.sandbox1568.opentlc.com/apis/registry/v2/groups/osaora/artifacts/loyalty-service-apis"
+  published: true
+  name: loyalty-service-activedoc
+  providerAccountRef:
+    name: 3scale-tenant-secret
+  productSystemName: loyalty-service-apis
