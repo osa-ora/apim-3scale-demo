@@ -2,7 +2,6 @@ apiVersion: capabilities.3scale.net/v1beta1
 kind: Backend
 metadata:
   name: loyalty-backend
-  namespace: globex-apim-user1
 spec:
   name: "Loyalty Backend"
   systemName: "loyalty-backend"
