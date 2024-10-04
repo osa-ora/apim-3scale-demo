@@ -1,4 +1,4 @@
-# apim-3scale-demo (work in progress)
+# API Management with Red Hat 3scale Demo (work in progress)
 Demonstration of full end-to-end API management using Red Hat Integration
 
 ### Prerequisite:
