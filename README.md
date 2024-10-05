@@ -197,7 +197,9 @@ If you configured your API, defined the different policies, you can then deploy 
  <img width="1244" alt="Screenshot 2024-10-04 at 9 30 09 PM" src="https://github.com/user-attachments/assets/e0a71579-01db-425d-a58f-c3f44c998765">
  
  Add 3 limit per minute and may be 10 per hour for testing: 
+ 
  <img width="387" alt="Screenshot 2024-10-04 at 9 31 09 PM" src="https://github.com/user-attachments/assets/2f066b39-aafa-418f-a32f-b3edf5e3bd0d">
+
 
  <img width="1258" alt="Screenshot 2024-10-04 at 9 31 58 PM" src="https://github.com/user-attachments/assets/f72d0fc8-fc6e-4b71-8f35-07d6e06056ca">
 
