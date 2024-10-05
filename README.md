@@ -7,26 +7,10 @@ Demonstration of full end-to-end API management using Red Hat Integration
 
 ---
 
-## Deploy An Application with APIs on OpenShift 
-
-You can use this guide to deploy this Java Application which exposes 2 end points: /loyalty/v1/balance/{id} and /loyalty/v1/transaction/{id} both URL parameters {id} refer to the Loyalty id.
-
-https://github.com/osa-ora/java-ocp-demo
-
-Once deployed you can access the route and make sure the APIs are working properly (you can use any id number).
-For example:
-- {route}/loyalty/v1/balance/1234
-- {route}/loyalty/v1/transaction/5555
-
-Get the service url to use it later on while we configure the API management part (http://hostname:port in the following screenshot):
-
-<img width="1184" alt="Screenshot 2024-10-04 at 8 44 45 PM" src="https://github.com/user-attachments/assets/f08b4c90-bc7a-47cd-918c-3048534a5797">
-
----
-
 ## API Design
 
 API-First approach, the first step, of course, is to design the APIs. API Designer is a tool to design your APIs (OpenAPI, AsyncAPI) and schemas (Apache Avro, Google Protobuf, JSON Schema)
+Designing the API is a team collaborative and iterative work, till we reach the level of agreement of all needed APIs, schema, required inputs and outputs, error handling, pagination, security and other requirements.
 
 <img width="826" alt="Screenshot 2024-10-04 at 4 56 35 PM" src="https://github.com/user-attachments/assets/c0995ea5-d9e9-4f7d-9788-6a7e5f9a6ab0">
 
@@ -50,7 +34,7 @@ Once you finalized the API design you can save the API so you can use in the com
 
 ## API Governance using API Registry
 
-Red Hat build of Apicurio Registry is a datastore for sharing standard event schemas and API designs across event-driven and API architectures.
+Red Hat build of Apicurio Registry is a datastore for sharing standard event schemas and API designs across event-driven and API architectures. You can now have different versions of your APIs based on the iterarive work and maturity of your application, you can also use the A/B, Blue/Green and Canary deployment strategies to support different versions.
 
 <img width="1263" alt="Screenshot 2024-10-04 at 5 01 32 PM" src="https://github.com/user-attachments/assets/78918549-d40c-4378-9eb2-00f4da1fd60a">
 
@@ -64,7 +48,9 @@ You can enable the validation of the specifications, check the documentation, up
 
 ## API Mocking using Microcks
 
-API mocks will enable parallel development streams leading to rapid inner loop development, Open the Microcks route: 
+API mocks will enable parallel development streams leading to rapid inner loop development, so backend develper doesn't need to rush and develop the backend for the client applications developers to starting developing their part, instead they can utilize the API mockups and build the applications against these endpoints. 
+
+Open the Microcks route: 
 
 <img width="1470" alt="Screenshot 2024-10-04 at 5 08 56 PM" src="https://github.com/user-attachments/assets/ed6d1de9-73fa-4d36-af3a-f170a01813d9">
 
@@ -80,15 +66,34 @@ Test it in the browser or by using the "curl" command:
 
 <img width="1053" alt="Screenshot 2024-10-04 at 5 12 42 PM" src="https://github.com/user-attachments/assets/eb4ef9a8-e51e-4d83-a95f-1b2be528d810">
 
-Now, we can start building our client apps that utilizes these API by hitting these mockups, these mockup examples should be covering different business scenarios .. like an account not found, an account with zero credit, an account locked, an account with some balance, etc...
+Now, we can start building our client apps that utilizes these API by hitting these mockups. It is important that these mockup examples must conver different business scenarios .. like an account not found, an account with zero credit, an account locked, an account with some balance, etc...
+
+---
+
+## Deploy Our API Application on OpenShift 
+
+Now, as parallel development in place, once the backend developers build their backend APIs according to the agreed desing, we can start deploy them on OpenShift.
+
+You can use the following guide to deploy this SpringBoot Java Application which exposes 2 end points: /loyalty/v1/balance/{id} and /loyalty/v1/transaction/{id} both URL parameters {id} refer to the Loyalty id.
+
+https://github.com/osa-ora/java-ocp-demo
+
+Once deployed you can access the route and make sure the APIs are working properly (you can use any id number).
+For example:
+- {route}/loyalty/v1/balance/1234
+- {route}/loyalty/v1/transaction/5555
+
+Get the service url to use it later on while we configure the API management part (http://hostname:port in the following screenshot):
+
+<img width="1184" alt="Screenshot 2024-10-04 at 8 44 45 PM" src="https://github.com/user-attachments/assets/f08b4c90-bc7a-47cd-918c-3048534a5797">
 
 ---
 
 ## API Management using 3Scale
 
-Now, the final stage is to manage the actual API that we deployed in the first step by the API management and apply different policies and security governance.
+Now, the final stage is to manage the actual API that we deployed in the previous step by the API management and apply different policies and security governance.
 
-3Scale defines the service as a backend, which can then offer many products (aka APIs), these APIs have different mapping as the end points.
+3Scale defines the service as a backend, which can then offer many products (aka APIs), these APIs have different mapping rule "end points".
 
 You can define activeDocs/documentation for each product/API, also you can define application plans where the client apps need to subscribe in any of these plans to be able to access the API, you can define throttling or pricing configurations per plan.
 
@@ -102,7 +107,9 @@ If you configured your API, defined the different policies, you can then deploy 
 
 ### Defining the API Backend
 
-  We will use the service hostname:port as we mentioned in the first step for our Java Application that exposes the 2 APIs.
+  We will use the service hostname:port as we mentioned in the first step for our Java Application that exposes the 2 APIs. 
+  
+  Note: If the Gateway deployed outside OpenShift, then we need to use the Route instead of the service end point.
 
   Click on Create Backend and populate it as following:
   
@@ -173,7 +180,7 @@ If you configured your API, defined the different policies, you can then deploy 
    
   <img width="1402" alt="Screenshot 2024-10-04 at 9 20 50 PM" src="https://github.com/user-attachments/assets/1d4608ac-edce-4fd7-8026-a396c1ba690e">
 
- ### Adding API Policies:
+ ### Adding API Policies
    
  Now, we can add some policies to the APIs, for example let's add a "Retry" policy:
  
@@ -183,7 +190,7 @@ If you configured your API, defined the different policies, you can then deploy 
  
  <img width="454" alt="Screenshot 2024-10-04 at 9 28 03 PM" src="https://github.com/user-attachments/assets/ccc9e2ad-f3e0-4565-b0ef-4a6e42484744">
 
-### Adding Rate Limits:
+### Adding API Rate Limits
 
  Configure Rate Limits, go to the basic plan and click on New Usage Limit:
  
