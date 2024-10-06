@@ -257,7 +257,7 @@ This concludes our demo which covers end to end scenarios of designing APIs, Gov
 
 ## Appendix: Operator Installation
 
-This part demonstrate the basic defualt operator installation without any customization.
+This part demonstrate the basic defualt operator installation without any customization. It is better to use the documentations for a better installation and configurations based on your detailed requirements.
 
 ### API Designer using API Designer Operator
 
