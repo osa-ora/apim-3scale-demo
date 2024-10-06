@@ -254,6 +254,93 @@ You can check the monitoring information for our APIs. Go to Analyics section an
 This concludes our demo which covers end to end scenarios of designing APIs, Governance, Mocking it, Managing it and connecting it to the actual backend with different governance policies and rate limits.
 
 ---
+## Appendix: Operator Installation
+
+### API Designer using API Designer Operator
+
+Go to the operatorhub section and select the "Red Hat Integration - API Designer Operator" and install it.
+
+<img width="288" alt="Screenshot 2024-10-06 at 8 04 59 AM" src="https://github.com/user-attachments/assets/66dbf269-3e80-4597-a150-44987d405d91">
+
+Then click on Create "Apicurito", and fill the form:
+
+<img width="1007" alt="Screenshot 2024-10-06 at 8 07 10 AM" src="https://github.com/user-attachments/assets/acd3431b-ecfd-4b34-a13f-b69c6669333a">
+
+Or use this simple YAML file: 
+
+ ```
+apiVersion: apicur.io/v1
+kind: Apicurito
+metadata:
+  name: apicurito-service
+spec:
+  size: 3
+ ```
+
+Go to the Topology and click on the UI component route to access the designer.
+
+<img width="490" alt="Screenshot 2024-10-06 at 8 09 04 AM" src="https://github.com/user-attachments/assets/1447e855-48b3-44be-9996-10f4eb813e2c">
+
+### API Registry using Apicurio Registry
+
+Go to the operatorhub section and select the "Red Hat build of Apicurio Registry" Operator and install it.
+
+<img width="282" alt="Screenshot 2024-10-06 at 8 35 13 AM" src="https://github.com/user-attachments/assets/8011a6e6-5743-485c-92ba-b3d1b673a8f3">
+
+We have 2 options, either using Kafaka or SQL for persistence, let's provision Postgresql first to use it in the registry configurations:
+
+<img width="778" alt="Screenshot 2024-10-06 at 8 20 15 AM" src="https://github.com/user-attachments/assets/7cad2faf-bc63-4dea-b70d-71ed9398dcdc">
+
+Set username/password, databaae and service name to use it in configuring the registry. 
+
+Then click on create "Apicurio Registry", and fill the form:
+
+<img width="699" alt="Screenshot 2024-10-06 at 8 25 51 AM" src="https://github.com/user-attachments/assets/6a33ee3a-6a79-4d07-b6f9-98d1b5db4d98">
+
+Select Stroage as SQL and fill in the Postgresql details, then add replicas as 1 or more.
+
+<img width="660" alt="Screenshot 2024-10-06 at 8 26 29 AM" src="https://github.com/user-attachments/assets/ed32883b-7062-4c05-b9b3-48b5fa2f4c0f">
+
+Or you can use the following Yaml file after updating the details.
+
+```
+apiVersion: registry.apicur.io/v1
+kind: ApicurioRegistry
+metadata:
+  name: example-registry
+spec:
+  configuration:
+    sql:
+      dataSource:
+        url: 'jdbc:postgresql://postgresql-registry.test2.svc:5432/sampledb'
+        userName: admin
+        password: admin1234
+    persistence: sql
+  deployment:
+    replicas: 1
+```
+
+Click on the route and start using the registry:
+
+<img width="266" alt="Screenshot 2024-10-06 at 8 32 35 AM" src="https://github.com/user-attachments/assets/af08e4f2-f7d6-41f6-bd02-9cecad42c991">
+
+### API Mocking using Microcks Operator
+
+Go to the operatorhub section and select the "Microcks" Operator and install it.
+
+Once installed, click on Create "MicrocksInstall". The operator will install mongodb and keycloak (with Postgresql) by default, keep the default and click on create:
+
+<img width="691" alt="Screenshot 2024-10-06 at 8 41 37 AM" src="https://github.com/user-attachments/assets/e84d4988-3478-45c0-9ace-49d9e76635b1">
+
+Once, installation finished, get the Keycloack admin user and password from the secret, and click on the route to access the KeyCloak UI. Go to Microcks Realm and set the user or manager password or create a new user.
+
+<img width="273" alt="Screenshot 2024-10-06 at 8 49 02 AM" src="https://github.com/user-attachments/assets/7cad00a7-d67e-49a0-bcec-5691fd9ed28c">
+
+Then Back to the topology view and click on the Microcks UI route, enter the username and password, based on the privilages you will be able to create/upload new APIs or not.
 
 
- 
+
+
+
+
+
