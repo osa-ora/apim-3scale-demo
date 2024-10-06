@@ -1,5 +1,5 @@
-# API Management with Red Hat 3scale Demo (work in progress)
-Demonstration of full end-to-end API management using Red Hat Integration
+# API Management with Red Hat 3scale Demo
+Demonstration of full end-to-end API management using Red Hat Integration Portfolio.
 
 ### Prerequisite:
 - Access to an OpenShift cluster
@@ -254,7 +254,10 @@ You can check the monitoring information for our APIs. Go to Analyics section an
 This concludes our demo which covers end to end scenarios of designing APIs, Governance, Mocking it, Managing it and connecting it to the actual backend with different governance policies and rate limits.
 
 ---
+
 ## Appendix: Operator Installation
+
+This part demonstrate the basic defualt operator installation without any customization.
 
 ### API Designer using API Designer Operator
 
@@ -337,6 +340,9 @@ Once, installation finished, get the Keycloack admin user and password from the 
 <img width="273" alt="Screenshot 2024-10-06 at 8 49 02 AM" src="https://github.com/user-attachments/assets/7cad00a7-d67e-49a0-bcec-5691fd9ed28c">
 
 Then Back to the topology view and click on the Microcks UI route, enter the username and password, based on the privilages you will be able to create/upload new APIs or not.
+
+---
+
 
 
 
