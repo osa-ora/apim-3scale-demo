@@ -15,6 +15,6 @@ spec:
       unit: "hit"
   mappingRules:
     - httpMethod: GET
-      pattern: "/“
+      pattern: /
       increment: 1
       metricMethodRef: hits
